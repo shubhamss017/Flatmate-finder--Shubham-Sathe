@@ -1,0 +1,7 @@
+from app.core.config import settings
+
+print(settings.SECRET_KEY)
+
+print(settings.ALGORITHM)
+
+print(settings.ACCESS_TOKEN_EXPIRE_MINUTES)

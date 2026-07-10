@@ -2,6 +2,9 @@ from fastapi import APIRouter
 from fastapi import Depends
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
+from app.schemas.user import UserLogin
+from app.auth.hashing import verify_password
+from app.auth.jwt_handler import create_access_token
 
 from app.database.session import get_db
 from app.schemas.user import UserRegister
@@ -39,14 +42,48 @@ def register(
     )
 
     created_user = create_user(
-        db,
-        user.email,
-        hashed_password,
-        user.role
+    db=db,
+    email=user.email,
+    password=hashed_password,
+    role=user.role
     )
 
     return {
         "message": "User registered successfully",
         "email": created_user.email,
         "role": created_user.role
+    }
+@router.post("/login")
+def login(
+    user: UserLogin,
+    db: Session = Depends(get_db)
+):
+    db_user = get_user_by_email(db, user.email)
+
+    if not db_user:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password"
+        )
+
+    if not verify_password(
+        user.password,
+        db_user.password
+    ):
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password"
+        )
+
+    token = create_access_token(
+        {
+            "sub": str(db_user.id),
+            "email": db_user.email,
+            "role": db_user.role
+        }
+    )
+
+    return {
+        "access_token": token,
+        "token_type": "bearer"
     }

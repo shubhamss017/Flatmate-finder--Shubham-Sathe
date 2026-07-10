@@ -1,16 +1,14 @@
 from pydantic import BaseModel, EmailStr, Field
 
+from app.models.enums import UserRole
+
 
 class UserRegister(BaseModel):
     email: EmailStr
-    password: str = Field(
-        min_length=8,
-        max_length=100
-    )
-    role: str
+    password: str = Field(min_length=8)
+    role: UserRole
 
 
-class UserResponse(BaseModel):
-    id: str
+class UserLogin(BaseModel):
     email: EmailStr
-    role: str
+    password: str
