@@ -3,14 +3,21 @@ from fastapi import FastAPI
 from app.database.base import Base
 from app.database.connection import engine
 
-# Import models so SQLAlchemy registers them
 import app.models
 
-app = FastAPI(title="RentMate AI API")
+from app.routers.auth import router as auth_router
+
+app = FastAPI(
+    title="Flatmate Finder API"
+)
 
 Base.metadata.create_all(bind=engine)
+
+app.include_router(auth_router)
 
 
 @app.get("/")
 def root():
-    return {"message": "RentMate AI Backend Running"}
+    return {
+        "message": "Flatmate Finder Backend Running"
+    }
