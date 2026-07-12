@@ -40,3 +40,9 @@ class User(BaseModel):
         back_populates="user",
         uselist=False
     )
+
+    listings = relationship(
+    "Listing",
+    back_populates="owner",
+    cascade="all, delete-orphan"
+)

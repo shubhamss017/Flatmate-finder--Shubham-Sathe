@@ -18,6 +18,9 @@ app.include_router(auth_router)
 from app.routers.users import router as users_router
 app.include_router(users_router)
 
+from app.routers.listing import router as listing_router
+app.include_router(listing_router)
+
 
 @app.get("/")
 def root():
