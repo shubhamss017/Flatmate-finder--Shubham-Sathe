@@ -15,5 +15,7 @@ class Settings:
         os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
     )
 
+    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
 
 settings = Settings()

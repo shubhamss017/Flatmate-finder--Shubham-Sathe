@@ -21,6 +21,15 @@ app.include_router(users_router)
 from app.routers.listing import router as listing_router
 app.include_router(listing_router)
 
+from app.routers.tenant_profile import router as tenant_profile_router
+app.include_router(tenant_profile_router)
+
+from app.routers.matching import router as matching_router
+app.include_router(matching_router)
+
+from app.routers.search import router as search_router
+app.include_router(search_router)
+
 
 @app.get("/")
 def root():
