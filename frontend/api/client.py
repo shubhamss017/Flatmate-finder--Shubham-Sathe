@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = "https://flatmate-finder-shubham-sathe.onrender.com"
 
 
 def get(endpoint, token=None):
