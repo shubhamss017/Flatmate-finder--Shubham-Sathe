@@ -38,6 +38,14 @@ from app.routers.dashboard import router as dashboard_router
 
 app.include_router(dashboard_router)
 
+from app.routers.chat import router as chat_router
+
+app.include_router(chat_router)
+
+from app.websocket.chat_socket import router as websocket_router
+
+app.include_router(websocket_router)
+
 
 @app.get("/")
 def root():

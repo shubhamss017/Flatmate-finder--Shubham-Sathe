@@ -3,3 +3,4 @@ from .tenant_profile import TenantProfile
 from .owner_profile import OwnerProfile
 from .listing import Listing
 from .interest import Interest
+from .message import Message
