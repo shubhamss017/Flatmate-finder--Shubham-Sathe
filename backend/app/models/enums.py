@@ -21,3 +21,8 @@ class GenderPreference(str, Enum):
     MALE = "male"
     FEMALE = "female"
     ANY = "any"
+
+class InterestStatus(str, Enum):
+    PENDING = "PENDING"
+    ACCEPTED = "ACCEPTED"
+    REJECTED = "REJECTED"

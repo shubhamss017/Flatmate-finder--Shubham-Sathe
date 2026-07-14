@@ -30,6 +30,14 @@ app.include_router(matching_router)
 from app.routers.search import router as search_router
 app.include_router(search_router)
 
+from app.routers.interest import router as interest_router
+
+app.include_router(interest_router)
+
+from app.routers.dashboard import router as dashboard_router
+
+app.include_router(dashboard_router)
+
 
 @app.get("/")
 def root():
